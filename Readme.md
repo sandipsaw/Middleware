@@ -71,7 +71,7 @@ That’s exactly how backend middleware works.
 
 # Types of Middleware in Backend
 
-1. Application-level Middleware
+## 1. Application-level Middleware
 These middleware run for all routes in your app.
 Used for tasks like:- 1. Logging every request 2. Parsing body 3. Checking tokens (basic authentication) 4. Checking rate limits
 
@@ -80,8 +80,8 @@ app.use((req, res, next) => {
     next();
 });
 This runs for every request → /login, /signup, /profile, etc.
-
-2. Router-level Middleware
+---
+## 2. Router-level Middleware
 These middleware are applied to a specific router only, not the whole app.
 
 Useful when you have modules like:
@@ -98,8 +98,8 @@ router.use((req, res, next) => {
 app.use("/user", router);
 
 This will run only for /user related routes.
-
-3. Built-in Middleware (Express Provided)
+---
+## 3. Built-in Middleware (Express Provided)
 Express gives some ready-made middleware.
 
 Parses JSON body into req.body.
@@ -107,8 +107,8 @@ app.use(express.json());
 
 Parses form data (HTML form).
 app.use(express.urlencoded({ extended: true }));
-
-4. Third-party Middleware
+---
+## 4. Third-party Middleware
 These are installed using npm packages to add extra features.
 
 Most common:
@@ -126,8 +126,8 @@ app.use(morgan("tiny"));
 
 Improves security by setting HTTP headers.
 app.use(helmet());
-
-5. Error-handling Middleware
+---
+## 5. Error-handling Middleware
 This middleware catches errors in the server.
 
 💡 It always has 4 parameters: (err, req, res, next)
@@ -139,8 +139,8 @@ app.use((err, req, res, next) => {
 });
 
 Used when: 1. Database fails 2. Invalid data 3. Route crashes 4.Internal server error
-
-6. Custom Middleware
+---
+## 6. Custom Middleware
 These are middleware that you create for your own logic.
 
 Example: custom authentication.
