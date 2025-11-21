@@ -38,15 +38,16 @@ next() → function used to go to the next middleware
 ## A simple middleware example
 
 Basic logging middleware:
+```
 function logger(req, res, next) {
     console.log(`Request Method: ${req.method}, URL: ${req.url}`);
     next();  // Move to next middleware or route
 }
 
 app.use(logger); // apply middleware to all routes
-
+```
 ## Another example: Authentication middleware
-
+```
 function auth(req, res, next) {
     if (req.headers.token === "12345") {
         next();   // user is allowed
@@ -58,7 +59,7 @@ function auth(req, res, next) {
 app.get("/dashboard", auth, (req, res) => {
     res.send("Welcome to Dashboard");
 });
-
+```
 ## Real Life Analogy
 
 Imagine you try to enter a mall:
@@ -74,11 +75,12 @@ That’s exactly how backend middleware works.
 ## 1. Application-level Middleware
 These middleware run for all routes in your app.
 Used for tasks like:- 1. Logging every request 2. Parsing body 3. Checking tokens (basic authentication) 4. Checking rate limits
-
+```
 app.use((req, res, next) => {
     console.log("Application level middleware");
     next();
 });
+```
 This runs for every request → /login, /signup, /profile, etc.
 
 ## 2. Router-level Middleware
@@ -88,13 +90,14 @@ Useful when you have modules like:
 /user , /admin , /products
 
 Example:
+```
 const router = express.Router();
 
 router.use((req, res, next) => {
     console.log("Router level middleware");
     next();
 });
-
+```
 app.use("/user", router);
 
 This will run only for /user related routes.
@@ -133,17 +136,19 @@ This middleware catches errors in the server.
 💡 It always has 4 parameters: (err, req, res, next)
 
 Example:
+```
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send("Something broke!");
 });
-
+```
 Used when: 1. Database fails 2. Invalid data 3. Route crashes 4.Internal server error
 
 ## 6. Custom Middleware
 These are middleware that you create for your own logic.
 
 Example: custom authentication.
+```
 function auth(req, res, next) {
     if (req.headers.token === "12345") {
         next();
@@ -153,7 +158,7 @@ function auth(req, res, next) {
 }
 
 app.use(auth);
-
+```
 Examples of custom middleware you might create:
 1. Validate email/password 2. Check user role 3. Count request hits
 4. Prevent spam 5. Log IP address
