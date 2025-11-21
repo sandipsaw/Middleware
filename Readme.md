@@ -80,7 +80,7 @@ app.use((req, res, next) => {
     next();
 });
 This runs for every request → /login, /signup, /profile, etc.
----
+
 ## 2. Router-level Middleware
 These middleware are applied to a specific router only, not the whole app.
 
@@ -98,7 +98,7 @@ router.use((req, res, next) => {
 app.use("/user", router);
 
 This will run only for /user related routes.
----
+
 ## 3. Built-in Middleware (Express Provided)
 Express gives some ready-made middleware.
 
@@ -107,7 +107,7 @@ app.use(express.json());
 
 Parses form data (HTML form).
 app.use(express.urlencoded({ extended: true }));
----
+
 ## 4. Third-party Middleware
 These are installed using npm packages to add extra features.
 
@@ -126,7 +126,7 @@ app.use(morgan("tiny"));
 
 Improves security by setting HTTP headers.
 app.use(helmet());
----
+
 ## 5. Error-handling Middleware
 This middleware catches errors in the server.
 
@@ -139,7 +139,7 @@ app.use((err, req, res, next) => {
 });
 
 Used when: 1. Database fails 2. Invalid data 3. Route crashes 4.Internal server error
----
+
 ## 6. Custom Middleware
 These are middleware that you create for your own logic.
 
